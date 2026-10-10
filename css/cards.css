@@ -1,0 +1,31 @@
+.cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.5rem;
+    padding: 2rem;
+}
+
+.card {
+    background: white;
+    border-radius: 8px;
+    padding: 1.2rem;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+}
+
+.tag-badge {
+    background: #e8f5e9;
+    color: var(--primary);
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.85rem;
+}
+
+.card.expired {
+    opacity: 0.6;
+    border: 1px solid var(--expired);
+}
+
+.timer {
+    font-weight: bold;
+    color: var(--secondary);
+}
