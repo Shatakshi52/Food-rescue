@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My Claims History - Food Rescue</title>
+    <link rel="stylesheet" href="css/global.css">
+    <link rel="stylesheet" href="css/navbar.css">
+    <link rel="stylesheet" href="css/cards.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">🥘 Food Rescue Board</div>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="available.html">Browse Food</a>
+            <a href="donate.html">Post Surplus</a>
+            <a href="claims.html" class="active">My Claims</a>
+        </div>
+    </nav>
+
+    <main class="board-container">
+        <h2>📦 Claimed Surplus Orders</h2>
+        <div id="claimsList" class="claims-list">
+            <!-- Dynamic Claimed Items Rendered Here -->
+        </div>
+    </main>
+
+    <script src="js/api.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', async () => {
+            const claims = await API.getClaims();
+            const container = document.getElementById('claimsList');
+            container.innerHTML = claims.map(c => `
+                <div class="claim-card">
+                    <h3>${c.food_name} (${c.claimed_quantity} meals)</h3>
+                    <p><strong>Eatery:</strong> ${c.restaurant_name}</p>
+                    <p><strong>Claimed By:</strong> ${c.volunteer_name} (${c.volunteer_phone})</p>
+                    <p><strong>Pickup Address:</strong> ${c.pickup_address}</p>
+                    <p><strong>Timestamp:</strong> ${c.claimed_at}</p>
+                </div>
+            `).join('');
+        });
+    </script>
+</body>
+</html>
